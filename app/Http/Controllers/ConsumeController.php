@@ -34,7 +34,7 @@ class ConsumeController extends Controller
     }
 
     public function view(){
-        
+        return view("welcome");
     }
 
     public function create(){
