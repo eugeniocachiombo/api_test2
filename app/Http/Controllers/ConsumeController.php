@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 
 class ConsumeController extends Controller
@@ -15,7 +16,11 @@ class ConsumeController extends Controller
     }
 
     public function getData(){
-        
+        try {
+            dd("Done");
+        } catch (Request $th) {
+            dd($th->getMessage());
+        }
     }
 
     public function view(){

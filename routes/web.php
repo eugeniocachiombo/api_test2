@@ -1,7 +1,6 @@
 <?php
 
+use App\Http\Controllers\ConsumeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ConsumeController::class, "getData"]);
