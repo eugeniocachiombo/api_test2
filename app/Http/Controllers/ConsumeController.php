@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class ConsumeController extends Controller
 {
@@ -17,8 +18,17 @@ class ConsumeController extends Controller
 
     public function getData(){
         try {
-            dd("Done");
-        } catch (Request $th) {
+            $http = Http::withHeaders([
+                "x-api-key" => $this->token
+            ])
+            ->get("https://api.thecatapi.com/v1/images/search");
+
+            if ($http->successful()) {
+                dd($http->json());
+            }else{
+                dd($http->status(), $http->json());
+            }
+        } catch (RequestException $th) {
             dd($th->getMessage());
         }
     }
