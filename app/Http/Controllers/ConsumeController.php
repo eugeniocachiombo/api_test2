@@ -34,7 +34,7 @@ class ConsumeController extends Controller
     }
 
     public function view(){
-
+        
     }
 
     public function create(){
