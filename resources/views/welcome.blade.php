@@ -7,6 +7,6 @@
         <title>Consumo de API</title>
     </head>
     <body>
-       
+       <h1>View</h1>
     </body>
 </html>
