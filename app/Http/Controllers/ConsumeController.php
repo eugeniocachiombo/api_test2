@@ -15,7 +15,7 @@ class ConsumeController extends Controller
     }
 
     public function getData(){
-
+        
     }
 
     public function view(){
