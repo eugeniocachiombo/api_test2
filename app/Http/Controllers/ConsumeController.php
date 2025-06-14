@@ -46,7 +46,7 @@ class ConsumeController extends Controller
         }
     }
 
-    public function getByLimit(Request $resquest)
+    public function getBySeach(Request $resquest)
     {
         try {
             $http = Http::withHeaders([

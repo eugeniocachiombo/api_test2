@@ -12,7 +12,7 @@
 <body>
     <div class="container py-4">
         <div class="col-md-12">
-            <form action="{{ route('limit') }}" method="GET" class="row g-3">
+            <form action="{{ route('seach') }}" method="GET" class="row g-3">
 
                 @csrf
                 <div class="col-md-4">
