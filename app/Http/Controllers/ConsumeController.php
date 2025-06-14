@@ -14,41 +14,15 @@ class ConsumeController extends Controller
     public function __construct()
     {
         $this->token = "066079f2-b609-43b6-bf6a-218eb15deaf8";
-        $this->getData();
     }
 
-    public function getData()
+    public function view()
     {
         try {
-            $http = Http::timeout(10)
-                ->withHeaders([
+            $http = Http::withHeaders([
                     "x-api-key" => $this->token
-                ])
-                ->get("https://api.thecatapi.com/v1/images/search");
-
-            if ($http->successful()) {
-                $this->message = "Sucesso";
-                $this->status = $http->status();
-                $this->data = $http->json();
-            } else {
-                $this->message = json_encode($http->json());
-                $this->status = $http->status();
-            }
-        } catch (\Exception $th) {
-            $this->message = $th->getMessage();
-        }
-    }
-
-    public function getByLimit(Request $resquest)
-    {
-        try {
-            $http = Http::timeout(10)
-                ->withHeaders([
-                    "x-api-key" => $this->token
-                ])
-                ->get("https://api.thecatapi.com/v1/images/search", [
-                    "limit" => $resquest->limit
-                ]);
+                ])->get("https://api.thecatapi.com/v1/images/search")
+                ->timeout(10);
 
             if ($http->successful()) {
                 $this->message = "Sucesso";
@@ -69,14 +43,31 @@ class ConsumeController extends Controller
         }
     }
 
-    public function view()
+    public function getByLimit(Request $resquest)
     {
-        return view("welcome", [
-            "data" => $this->data,
-            "status" => $this->status,
-            "message" => $this->message,
-        ]);
-    }
+        try {
+            $http = Http::withHeaders([
+                    "x-api-key" => $this->token
+                ])->get("https://api.thecatapi.com/v1/images/search", [
+                    "limit" => $resquest->limit
+                ])->timeout(10);
 
-    public function create() {}
+            if ($http->successful()) {
+                $this->message = "Sucesso";
+                $this->status = $http->status();
+                $this->data = $http->json();
+            } else {
+                $this->message = json_encode($http->json());
+                $this->status = $http->status();
+            }
+        } catch (\Exception $th) {
+            $this->message = $th->getMessage();
+        } finally {
+            return view("welcome", [
+                "data" => $this->data,
+                "status" => $this->status,
+                "message" => $this->message,
+            ]);
+        }
+    }
 }
