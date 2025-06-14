@@ -29,10 +29,9 @@ class ConsumeController extends Controller
                 $this->message = "Sucesso";
                 $this->status = $http->status();
                 $this->data = $http->json();
-            }else{
-                $this->message = "Nenhuma informação encontrada";
+            } else {
+                $this->message = json_encode($http->json());
                 $this->status = $http->status();
-                $this->data = $http->json();
             }
         } catch (\Exception $th) {
             $this->message = $th->getMessage();
