@@ -8,39 +8,7 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
     <title>Consumo de API</title>
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-
-        .card {
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .alert {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .img-container {
-            overflow: hidden;
-            border-radius: 8px;
-        }
-
-        .img-container img {
-            object-fit: cover;
-            width: 100%;
-            height: auto;
-        }
-
-        .form-section {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 
 <body>
