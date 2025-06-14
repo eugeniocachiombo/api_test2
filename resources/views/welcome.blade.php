@@ -35,8 +35,17 @@
                                 <img class="img-fluid" src="{{ $data[$i]['url'] }}" width="{{ $data[$i]['width'] }}"
                                     height="{{ $data[$i]['height'] }}" alt="{{ $data[$i]['id'] }} não encontrado">
                             </div>
+                            @if (!empty($data[$i]['breeds']))
+                                @php
+                                    $breeds = $data[$i]['breeds'];
+                                @endphp
+                                <div class="col-12">
+                                    <h1>{{ $breeds["origin"] ?? 'n/d' }}</h1>
+                                </div>
+                            @endif
                         </div>
                     </div>
+
                 </div>
             @endfor
         </div>
