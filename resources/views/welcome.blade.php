@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('assets/bootstrap-5.0.2/css/bootstrap.css') }}">
+    <script src="{{ asset('assets/swalert/alert.js') }}"></script>
     <title>Consumo de API</title>
 </head>
 
@@ -42,6 +43,7 @@
     </div>
 
     <script src="{{ asset('assets/bootstrap-5.0.2/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('assets/swalert/execute_alert.js') }}"></script>
 </body>
 
 </html>
