@@ -13,13 +13,14 @@ class ConsumeController extends Controller
 
     public function __construct()
     {
-        $this->token = "live_YfB9dUuYxzclJOKwj7dTN8iBKUqKuGDWm7tLNUbi8MlrzhT1566djcMdMRaw4cXm";
+        $this->token = "live_dYz0e29CsWPIpFlhqSi5rvYSx7JSw5C8w3ijLTuZzD1QdovCRYLL8zhgkz0fEffL";
         $this->getData();
     }
 
     public function getData(){
         try {
-            $http = Http::withHeaders([
+            $http = Http::timeout(10)
+            ->withHeaders([
                 "x-api-key" => $this->token
             ])
             ->get("https://api.thecatapi.com/v1/images/search");
