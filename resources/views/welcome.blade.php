@@ -11,18 +11,65 @@
 
 <body>
     <div class="container py-4">
-        <div class="row mb-4">
-            <div class="col-md-6">
-                <form action="{{ route('limit') }}" method="GET" class="input-group">
-                    @csrf
-                    <input type="text" class="form-control" name="limit" placeholder="Digite um limite. ex: 5"
-                        aria-label="Campo de pesquisa">
-                    <button class="btn btn-outline-primary" type="submit">Buscar</button>
-                </form>
-            </div>
+        <div class="col-md-12">
+            <form action="{{ route('limit') }}" method="GET" class="row g-3">
+
+                @csrf
+                <div class="col-md-4">
+                    <input type="number" class="form-control" name="limit" placeholder="Limite (1-100)">
+                </div>
+
+
+                <div class="col-md-4">
+                    <input type="number" class="form-control" name="page" placeholder="Página (0-n)">
+                </div>
+
+
+                <div class="col-md-4">
+                    <select class="form-select" name="order">
+                        <option value="">Ordem</option>
+                        <option value="ASC">Crescente</option>
+                        <option value="DESC">Descrescente</option>
+                        <option value="RAND">Aleatório</option>
+                    </select>
+                </div>
+
+
+                <div class="col-md-4">
+                    <select class="form-select" name="has_breeds">
+                        <option value="">Com raça?</option>
+                        <option value="1">Sim</option>
+                        <option value="0">Não</option>
+                    </select>
+                </div>
+
+
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="breed_ids"
+                        placeholder="IDs de raça (ex: beng,abys)">
+                </div>
+
+
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="category_ids"
+                        placeholder="IDs de categoria (ex: 1,5,14)">
+                </div>
+
+
+                <div class="col-md-4 mt-2">
+                    <input type="text" class="form-control" name="sub_id" placeholder="Sub ID (opcional)">
+                </div>
+
+
+                <div class="row d-flex justify-content-end">
+                    <div class="col-md-2 mt-2 ">
+                        <button class="btn btn-outline-primary w-100" type="submit">Buscar</button>
+                    </div>
+                </div>
+            </form>
         </div>
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="alert alert-{{ $status == 200 ? 'success' : 'danger' }}">
                 <b>{{ $status ?? '500' }}</b>
                 <h3><b>{{ $message }}</b></h3>
