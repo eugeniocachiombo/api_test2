@@ -13,7 +13,7 @@ class ConsumeController extends Controller
 
     public function __construct()
     {
-        $this->token = "live_dYz0e29CsWPIpFlhqSi5rvYSx7JSw5C8w3ijLTuZzD1QdovCRYLL8zhgkz0fEffL";
+        $this->token = "066079f2-b609-43b6-bf6a-218eb15deaf8";
         $this->getData();
     }
 
