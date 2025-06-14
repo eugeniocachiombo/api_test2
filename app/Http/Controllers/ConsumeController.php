@@ -36,7 +36,7 @@ class ConsumeController extends Controller
                 $this->status = $http->status();
             }
         } catch (\Exception $th) {
-            $this->message = "Erro de conexão com a API:   ( " . $th->getMessage() . " )";
+            $this->message = "Falha na conexão com a API:   ( " . $th->getMessage() . " )";
         } finally {
             return view("welcome", [
                 "data" => $this->data,
@@ -71,7 +71,7 @@ class ConsumeController extends Controller
                 $this->status = $http->status();
             }
         } catch (\Exception $th) {
-            $this->message = "Erro de conexão com a API:   ( " . $th->getMessage() . " )";
+            $this->message = "Falha na conexão com a API:   ( " . $th->getMessage() . " )";
         } finally {
             return view("welcome", [
                 "data" => $this->data,
