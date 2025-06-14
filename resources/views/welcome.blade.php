@@ -11,6 +11,9 @@
 
 <body>
     <div class="container py-4">
+        <div class="col-12">
+            The Cate Api - (Desafio de consumo)
+        </div>
         <div class="col-md-12">
             <form action="{{ route('seach') }}" method="GET" class="row g-3">
 
@@ -19,52 +22,13 @@
                     <input type="number" class="form-control" name="limit" placeholder="Limite (1-100)">
                 </div>
 
-
-                <div class="col-md-4">
-                    <input type="number" class="form-control" name="page" placeholder="Página (0-n)">
-                </div>
-
-
-                <div class="col-md-4">
-                    <select class="form-select" name="order">
-                        <option value="">Ordem</option>
-                        <option value="ASC">Crescente</option>
-                        <option value="DESC">Descrescente</option>
-                        <option value="RAND">Aleatório</option>
-                    </select>
-                </div>
-
-
-                <div class="col-md-4">
-                    <select class="form-select" name="has_breeds">
-                        <option value="">Com raça?</option>
-                        <option value="1">Sim</option>
-                        <option value="0">Não</option>
-                    </select>
-                </div>
-
-
                 <div class="col-md-4">
                     <input type="text" class="form-control" name="breed_ids"
                         placeholder="IDs de raça (ex: beng,abys)">
                 </div>
 
-
-                <div class="col-md-4">
-                    <input type="text" class="form-control" name="category_ids"
-                        placeholder="IDs de categoria (ex: 1,5,14)">
-                </div>
-
-
-                <div class="col-md-4 mt-2">
-                    <input type="text" class="form-control" name="sub_id" placeholder="Sub ID (opcional)">
-                </div>
-
-
-                <div class="row d-flex justify-content-end">
-                    <div class="col-md-2 mt-2 ">
-                        <button class="btn btn-outline-primary w-100" type="submit">Buscar</button>
-                    </div>
+                <div class="col-md-4 ">
+                    <button class="btn btn-outline-primary w-100" type="submit">Buscar</button>
                 </div>
             </form>
         </div>
@@ -96,18 +60,18 @@
                                 @endphp
 
                                 @for ($i = 0; $i < count($breeds); $i++)
-                                    <div class="col-12">
+                                    <div class="col-12 mt-3">
                                         <b>Id: {{ $breeds[$i]['id'] ?? 'n/d' }}</b> <br>
-                                        <b>Nome: {{ $breeds[$i]['origin'] ?? 'n/d' }}</b> <br>
+                                        <b>Nome: {{ $breeds[$i]['name'] ?? 'n/d' }}</b> <br>
                                         <b>Temperamento: {{ $breeds[$i]['temperament'] ?? 'n/d' }}</b> <br>
                                         <b>Origem: {{ $breeds[$i]['origin'] ?? 'n/d' }}</b> <br>
                                         <b>Tempo de vida: {{ $breeds[$i]['life_span'] ?? 'n/d' }}</b> <br>
                                         <b>Peso:
                                             @php
-                                                $weight = $breeds[$i]['weight'];
+                                                $weight = $breeds[$i]['weight'] ?? 'n/d';
                                             @endphp
-                                            Imperial: {{ $weight['imperial'] ?? '' }}
-                                            Métrico: {{ $weight['metric'] ?? '' }}
+                                            Imperial: {{ $weight['imperial'] ?? 'n/d' }}
+                                            Métrico: {{ $weight['metric'] ?? 'n/d' }}
                                         </b> <br>
                                         <b>Wikipedia:</b> <a
                                             href="{{ $breeds[$i]['wikipedia_url'] ?? '#' }}">Visualizar</a> <br>
