@@ -41,48 +41,40 @@
         </div>
 
         <div class="row g-3">
-            @for ($i = 0; $i < count($data); $i++)
+            @foreach ($data as $item)
                 <div class="col-6">
-                    <div class="card" style="">
+                    <div class="card">
                         <div class="card-header">
-                            Id: {{ $data[$i]['id'] }}
+                            Id: {{ $item['id'] }}
                         </div>
 
                         <div class="card-body">
                             <div class="col-12">
-                                <img class="img-fluid" src="{{ $data[$i]['url'] }}" width="{{ $data[$i]['width'] }}"
-                                    height="{{ $data[$i]['height'] }}" alt="{{ $data[$i]['id'] }} não encontrado">
+                                <img class="img-fluid" src="{{ $item['url'] }}" width="{{ $item['width'] }}"
+                                    height="{{ $item['height'] }}" alt="{{ $item['id'] }} não encontrado">
                             </div>
 
-                            @if (!empty($data[$i]['breeds']))
-                                @php
-                                    $breeds = $data[$i]['breeds'];
-                                @endphp
-
-                                @for ($i = 0; $i < count($breeds); $i++)
+                            @if (!empty($item['breeds']))
+                                @foreach ($item['breeds'] as $breed)
                                     <div class="col-12 mt-3">
-                                        <b>Id: {{ $breeds[$i]['id'] ?? 'n/d' }}</b> <br>
-                                        <b>Nome: {{ $breeds[$i]['name'] ?? 'n/d' }}</b> <br>
-                                        <b>Temperamento: {{ $breeds[$i]['temperament'] ?? 'n/d' }}</b> <br>
-                                        <b>Origem: {{ $breeds[$i]['origin'] ?? 'n/d' }}</b> <br>
-                                        <b>Tempo de vida: {{ $breeds[$i]['life_span'] ?? 'n/d' }}</b> <br>
-                                        <b>Peso:
-                                            @php
-                                                $weight = $breeds[$i]['weight'] ?? 'n/d';
-                                            @endphp
-                                            Imperial: {{ $weight['imperial'] ?? 'n/d' }}
-                                            Métrico: {{ $weight['metric'] ?? 'n/d' }}
-                                        </b> <br>
-                                        <b>Wikipedia:</b> <a
-                                            href="{{ $breeds[$i]['wikipedia_url'] ?? '#' }}">Visualizar</a> <br>
+                                        <b>Id:</b> {{ $breed['id'] ?? 'n/d' }} <br>
+                                        <b>Nome:</b> {{ $breed['name'] ?? 'n/d' }} <br>
+                                        <b>Temperamento:</b> {{ $breed['temperament'] ?? 'n/d' }} <br>
+                                        <b>Origem:</b> {{ $breed['origin'] ?? 'n/d' }} <br>
+                                        <b>Tempo de vida:</b> {{ $breed['life_span'] ?? 'n/d' }} <br>
+                                        <b>Peso:</b>
+                                        Imperial: {{ $breed['weight']['imperial'] ?? 'n/d' }},
+                                        Métrico: {{ $breed['weight']['metric'] ?? 'n/d' }} <br>
+                                        <b>Wikipedia:</b>
+                                        <a href="{{ $breed['wikipedia_url'] ?? '#' }}" target="_blank">Visualizar</a>
+                                        <br>
                                     </div>
-                                @endfor
+                                @endforeach
                             @endif
                         </div>
                     </div>
-
                 </div>
-            @endfor
+            @endforeach
         </div>
     </div>
 
