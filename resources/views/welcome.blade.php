@@ -70,6 +70,13 @@
                                         <b>Temperamento: {{ $breeds[$i]['temperament'] ?? 'n/d' }}</b> <br>
                                         <b>Origem: {{ $breeds[$i]['origin'] ?? 'n/d' }}</b> <br>
                                         <b>Tempo de vida: {{ $breeds[$i]['life_span'] ?? 'n/d' }}</b> <br>
+                                        <b>Peso: 
+                                            @php
+                                                $weight = $breeds[$i]['weight'];
+                                            @endphp
+                                            Imperial: {{ $weight["imperial"] ?? ''}}
+                                            Métrico: {{ $weight["metric"] ?? ''}}
+                                        </b> <br>
                                         <b>Wikipedia:</b> <a
                                             href="{{ $breeds[$i]['wikipedia_url'] ?? '#' }}">Visualizar</a> <br>
                                     </div>
