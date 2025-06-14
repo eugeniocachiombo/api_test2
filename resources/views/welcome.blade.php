@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('assets/bootstrap-5.0.2/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
     <title>Consumo de API</title>
     <style>
         body {
@@ -57,7 +58,8 @@
                 </div>
                 <div class="col-md-4">
                     <label for="breed_ids" class="form-label">IDs de Raça</label>
-                    <input type="text" class="form-control" name="breed_ids" id="breed_ids" placeholder="Ex: beng,abys">
+                    <input type="text" class="form-control" name="breed_ids" id="breed_ids"
+                        placeholder="Ex: beng,abys">
                 </div>
                 <div class="col-md-4 d-grid">
                     <button class="btn btn-primary" type="submit">
@@ -69,13 +71,25 @@
 
         <div class="row mb-4">
             <div class="col">
-                <div class="alert alert-{{ $status == 200 ? 'success' : 'danger' }}">
-                    <i class="bi {{ $status == 200 ? 'bi-check-circle-fill' : 'bi-exclamation-triangle-fill' }} fs-4"></i>
-                    <div>
-                        <strong>Status:</strong> {{ $status }}<br>
-                        <strong>Mensagem:</strong> {{ $message }}
+                @if ($status && $message && count($data) == 0 )
+                    <div class="alert alert-danger }}">
+                        <i
+                            class="bi bi-exclamation-triangle-fill fs-4"></i>
+                        <div class="fw-bold">
+                            404<br>
+                            Nenhuma informação encontrada
+                        </div>
                     </div>
-                </div>
+                @else
+                    <div class="alert alert-{{ $status == 200 ? 'success' : 'danger' }}">
+                        <i
+                            class="bi {{ $status == 200 ? 'bi-check-circle-fill' : 'bi-exclamation-triangle-fill' }} fs-4"></i>
+                        <div class="fw-bold">
+                            {{ $status }}<br>
+                            {{ $message }}
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
 
@@ -98,9 +112,11 @@
                                         <p><strong>Temperamento:</strong> {{ $breed['temperament'] ?? 'n/d' }}</p>
                                         <p><strong>Origem:</strong> {{ $breed['origin'] ?? 'n/d' }}</p>
                                         <p><strong>Tempo de vida:</strong> {{ $breed['life_span'] ?? 'n/d' }} anos</p>
-                                        <p><strong>Peso:</strong> {{ $breed['weight']['imperial'] ?? 'n/d' }} lb (Imperial), {{ $breed['weight']['metric'] ?? 'n/d' }} kg (Métrico)</p>
-                                        <p><strong>Wikipedia:</strong> 
-                                            <a href="{{ $breed['wikipedia_url'] ?? '#' }}" class="link-primary" target="_blank">Visualizar</a>
+                                        <p><strong>Peso:</strong> {{ $breed['weight']['imperial'] ?? 'n/d' }}
+                                            (Imperial), {{ $breed['weight']['metric'] ?? 'n/d' }} (Métrico)</p>
+                                        <p><strong>Wikipedia:</strong>
+                                            <a href="{{ $breed['wikipedia_url'] ?? '#' }}" class="link-primary"
+                                                target="_blank">Visualizar</a>
                                         </p>
                                     </div>
                                 @endforeach
