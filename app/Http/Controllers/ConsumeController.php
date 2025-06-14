@@ -29,7 +29,7 @@ class ConsumeController extends Controller
             }else{
                 dd($http->status(), $http->json());
             }
-        } catch (RequestException $th) {
+        } catch (\Exception $th) {
             dd($th->getMessage());
         }
     }
