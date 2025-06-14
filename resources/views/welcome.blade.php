@@ -45,7 +45,7 @@
 <body>
     <div class="container py-5">
         <div class="text-center mb-4">
-            <h2 class="fw-bold text-primary">The Cat API - Desafio de Consumo</h2>
+            <h2 class="fw-bold text-primary">The Cat API - Consumo de API</h2>
         </div>
 
         <div class="form-section mb-5">
@@ -67,7 +67,6 @@
             </form>
         </div>
 
-        @if(isset($status) && isset($message))
         <div class="row mb-4">
             <div class="col">
                 <div class="alert alert-{{ $status == 200 ? 'success' : 'danger' }}">
@@ -79,7 +78,6 @@
                 </div>
             </div>
         </div>
-        @endif
 
         <div class="row g-4">
             @foreach ($data as $item)
