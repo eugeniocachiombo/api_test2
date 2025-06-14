@@ -13,11 +13,11 @@
       
         <div class="row mb-4">
             <div class="col-md-6">
-                <div class="input-group">
+                <form action="" class="input-group">
                     <input type="text" class="form-control" placeholder="Pesquisar..."
                         aria-label="Campo de pesquisa">
                     <button class="btn btn-outline-primary" type="button">Buscar</button>
-                </div>
+                </form>
             </div>
         </div>
 
