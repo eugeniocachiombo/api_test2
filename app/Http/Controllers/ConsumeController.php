@@ -108,4 +108,36 @@ class ConsumeController extends Controller
             ]);
         }
     }
+
+    public function getFavourits()
+    {
+        try {
+            $http = Http::withHeaders([
+                    "x-api-key" => $this->token
+                ])
+                ->timeout(10)
+                ->get("https://api.thecatapi.com/v1/favourites", [
+                    "sub_id" => $this->sub_id
+                ]);
+
+            if ($http->successful()) {
+                 $this->message = "Sucesso";
+                $this->status = $http->status();
+                $this->data = $http->json();
+            } else {
+                $this->message = json_encode($http->json());
+                $this->status = $http->status();
+            }
+        } catch (\Exception $th) {
+            $this->message = $th->getMessage();
+        } catch (RequestException $th) {
+            $this->message = $th->getMessage();
+        } finally {
+            return view("welcome", [
+                "data" => $this->data,
+                "status" => $this->status,
+                "message" => $this->message,
+            ]);
+        }
+    }
 }

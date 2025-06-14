@@ -11,7 +11,6 @@
 
 <body>
     <div class="container py-4">
-
         <div class="row mb-4">
             <div class="col-md-6">
                 <form action="{{ route('limit') }}" method="GET" class="input-group">
@@ -20,11 +19,13 @@
                         aria-label="Campo de pesquisa">
                     <button class="btn btn-outline-primary" type="submit">Buscar</button>
                 </form>
-                <form class="input-group mt-3" action="{{ route('limit') }}" method="GET">
-                    <button class="btn btn-outline-primary" type="submit">
-                        Favoritos
-                    </button>
-                </form>
+                <div class="mt-3">
+                    <a href="{{ route('get.favourit') }}">
+                        <button class="btn btn-outline-primary" type="submit">
+                            Listar Favoritos
+                        </button>
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -44,8 +45,9 @@
                                 Id: {{ $data[$i]['id'] }}
                             </div>
                             <div>
-                                <a href="{{ route('add.favourit', $data[$i]['id'] ) }}">
-                                    <button class="btn btn-outline-primary" type="button">Adicionar Ao Faovrito</button>
+                                <a href="{{ route('add.favourit', $data[$i]['id']) }}">
+                                    <button class="btn btn-outline-primary" type="button">Adicionar Ao
+                                        Faovrito</button>
                                 </a>
                             </div>
                         </div>
