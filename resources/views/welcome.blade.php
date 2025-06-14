@@ -23,7 +23,7 @@
         </div>
 
         <div class="row">
-            <div class="alert alert-{{ $status == 200 ? "success" : "danger" }}">
+            <div class="alert alert-{{ $status == 200 ? 'success' : 'danger' }}">
                 <b>{{ $status ?? '500' }}</b>
                 <h3><b>{{ $message }}</b></h3>
             </div>
@@ -36,18 +36,28 @@
                         <div class="card-header">
                             Id: {{ $data[$i]['id'] }}
                         </div>
+
                         <div class="card-body">
                             <div class="col-12">
                                 <img class="img-fluid" src="{{ $data[$i]['url'] }}" width="{{ $data[$i]['width'] }}"
                                     height="{{ $data[$i]['height'] }}" alt="{{ $data[$i]['id'] }} não encontrado">
                             </div>
+
                             @if (!empty($data[$i]['breeds']))
                                 @php
                                     $breeds = $data[$i]['breeds'];
                                 @endphp
-                                <div class="col-12">
-                                    <h1>{{ $breeds['origin'] ?? 'n/d' }}</h1>
-                                </div>
+
+                                @for ($i = 0; $i < count($breeds); $i++)
+                                    <div class="col-12">
+                                        <b>Id: {{ $breeds[$i]['id'] ?? 'n/d' }}</b> <br>
+                                        <b>Nome: {{ $breeds[$i]['origin'] ?? 'n/d' }}</b> <br>
+                                        <b>Temperamento: {{ $breeds[$i]['temperament'] ?? 'n/d' }}</b> <br>
+                                        <b>Origem: {{ $breeds[$i]['origin'] ?? 'n/d' }}</b> <br>
+                                        <b>Tempo de vida: {{ $breeds[$i]['life_span'] ?? 'n/d' }}</b> <br>
+                                        <b>Wikipedia:</b> <a href="{{ $breeds[$i]['wikipedia_url'] ?? '#' }}">Visualizar</a> <br>
+                                    </div>
+                                @endfor
                             @endif
                         </div>
                     </div>
