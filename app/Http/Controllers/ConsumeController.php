@@ -38,7 +38,6 @@ class ConsumeController extends Controller
         } catch (\Exception $th) {
             $this->message = $th->getMessage();
         } finally {
-           // dd($this->data);
             return view("welcome", [
                 "data" => $this->data,
                 "status" => $this->status,
