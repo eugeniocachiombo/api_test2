@@ -75,43 +75,4 @@ class ConsumeController extends Controller
             ]);
         }
     }
-
-    public function addFavourit(string $image_id)
-    {
-        try {
-            $http = Http::withHeaders([
-                    "x-api-key" => $this->token
-                ])
-                ->timeout(10)
-                ->get("https://api.thecatapi.com/v1/favourites/", [
-                    "image_id" => $image_id,
-                    "sub_id" => $this->sub_id
-                ]);
-
-            dd([
-                    "image_id" => $image_id,
-                    "sub_id" => $this->sub_id
-                ]);
-
-            if ($http->successful()) {
-                 $this->message = "Adicionado aos favoritos";
-                $this->status = $http->status();
-                $this->data = $http->json();
-                dd($http->body(), $http->json());
-            } else {
-                $this->message = json_encode($http->json());
-                $this->status = $http->status();
-            }
-        } catch (\Exception $th) {
-            $this->message = $th->getMessage();
-        } catch (RequestException $th) {
-            $this->message = $th->getMessage();
-        } finally {
-            return view("welcome", [
-                "data" => $this->data,
-                "status" => $this->status,
-                "message" => $this->message,
-            ]);
-        }
-    }
 }
