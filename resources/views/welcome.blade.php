@@ -48,6 +48,10 @@
 
                 </div>
             @endfor
+
+            @if (count($data) == 0)
+                <div class="alert alert-danger">Nenhuma informação encontrada</div>
+            @endif
         </div>
     </div>
 
