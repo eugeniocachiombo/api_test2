@@ -14,10 +14,13 @@
 
         <div class="row mb-4">
             <div class="col-md-6">
-                <form action="" class="input-group">
-                    <input type="text" class="form-control" placeholder="Pesquisar..."
+                <form action="{{ route('limit') }}" method="GET" class="input-group">
+                    @csrf
+                    <input type="text" class="form-control" 
+                    name="limit"
+                    placeholder="Digite um limite. ex: 5"
                         aria-label="Campo de pesquisa">
-                    <button class="btn btn-outline-primary" type="button">Buscar</button>
+                    <button class="btn btn-outline-primary" type="submit">Buscar</button>
                 </form>
             </div>
         </div>
