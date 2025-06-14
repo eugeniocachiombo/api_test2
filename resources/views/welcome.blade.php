@@ -22,6 +22,12 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="alert alert-{{ $status == 200 ? "success" : "danger" }}">
+                <b>{{ $status ?? '500' }}</b>
+                <h3><b>{{ $message }}</b></h3>
+            </div>
+        </div>
 
         <div class="row g-3">
             @for ($i = 0; $i < count($data); $i++)
@@ -40,7 +46,7 @@
                                     $breeds = $data[$i]['breeds'];
                                 @endphp
                                 <div class="col-12">
-                                    <h1>{{ $breeds["origin"] ?? 'n/d' }}</h1>
+                                    <h1>{{ $breeds['origin'] ?? 'n/d' }}</h1>
                                 </div>
                             @endif
                         </div>
@@ -48,10 +54,6 @@
 
                 </div>
             @endfor
-
-            @if (count($data) == 0)
-                <div class="alert alert-danger">Nenhuma informação encontrada</div>
-            @endif
         </div>
     </div>
 
