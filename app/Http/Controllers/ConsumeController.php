@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Http;
 class ConsumeController extends Controller
 {
 
-    public $token;
+    public $token, $data = [];
 
     public function __construct()
     {
@@ -24,7 +24,7 @@ class ConsumeController extends Controller
             ->get("https://api.thecatapi.com/v1/images/search");
 
             if ($http->successful()) {
-                dd($http->json());
+                $this->data = $http->json();
             }else{
                 dd($http->status(), $http->json());
             }
@@ -34,7 +34,7 @@ class ConsumeController extends Controller
     }
 
     public function view(){
-        return view("welcome");
+        return view("welcome", ["data" => $this->data]);
     }
 
     public function create(){
