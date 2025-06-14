@@ -20,13 +20,13 @@ class ConsumeController extends Controller
     public function view()
     {
         try {
-           
+
             $http = Http::withHeaders([
-                    "x-api-key" => $this->token
-                    ])
-                    ->timeout(10)
-                    ->get("https://api.thecatapi.com/v1/images/search");
-             
+                "x-api-key" => $this->token
+            ])
+                ->timeout(10)
+                ->get("https://api.thecatapi.com/v1/images/search");
+
             if ($http->successful()) {
                 $this->message = "Sucesso";
                 $this->status = $http->status();
@@ -46,16 +46,26 @@ class ConsumeController extends Controller
         }
     }
 
-    public function getBySeach(Request $resquest)
+    public function getBySeach(Request $request)
     {
         try {
+
+            $params = [
+                'limit' => $request->limit,
+                'page' => $request->page,
+                'order' => $request->order,
+                'has_breeds' => $request->has_breeds,
+                'breed_ids' => $request->breed_ids,
+                'category_ids' => $request->category_ids,
+                'sub_id' => $request->sub_id,
+            ];
+            $params = array_filter($params, fn($value) => $value !== null && $value !== '');
+
             $http = Http::withHeaders([
-                    "x-api-key" => $this->token
-                ])
+                "x-api-key" => $this->token
+            ])
                 ->timeout(10)
-                ->get("https://api.thecatapi.com/v1/images/search", [
-                    "limit" => $resquest->limit
-                ]);
+                ->get("https://api.thecatapi.com/v1/images/search", $params);
 
             if ($http->successful()) {
                 $this->message = "Sucesso";
