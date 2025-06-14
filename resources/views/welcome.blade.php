@@ -5,71 +5,109 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('assets/bootstrap-5.0.2/css/bootstrap.css') }}">
-    <script src="{{ asset('assets/swalert/alert.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
     <title>Consumo de API</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .alert {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .img-container {
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .img-container img {
+            object-fit: cover;
+            width: 100%;
+            height: auto;
+        }
+
+        .form-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container py-4">
-        <div class="col-12">
-            The Cate Api - (Desafio de consumo)
+    <div class="container py-5">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-primary">The Cat API - Desafio de Consumo</h2>
         </div>
-        <div class="col-md-12">
-            <form action="{{ route('seach') }}" method="GET" class="row g-3">
 
+        <div class="form-section mb-5">
+            <form action="{{ route('seach') }}" method="GET" class="row g-3 align-items-end">
                 @csrf
                 <div class="col-md-4">
-                    <input type="number" class="form-control" name="limit" placeholder="Limite (1-100)">
+                    <label for="limit" class="form-label">Limite (1-100)</label>
+                    <input type="number" class="form-control" name="limit" id="limit" placeholder="Ex: 10">
                 </div>
-
                 <div class="col-md-4">
-                    <input type="text" class="form-control" name="breed_ids"
-                        placeholder="IDs de raça (ex: beng,abys)">
+                    <label for="breed_ids" class="form-label">IDs de Raça</label>
+                    <input type="text" class="form-control" name="breed_ids" id="breed_ids" placeholder="Ex: beng,abys">
                 </div>
-
-                <div class="col-md-4 ">
-                    <button class="btn btn-outline-primary w-100" type="submit">Buscar</button>
+                <div class="col-md-4 d-grid">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="bi bi-search"></i> Buscar
+                    </button>
                 </div>
             </form>
         </div>
 
-        <div class="row mt-4">
-            <div class="alert alert-{{ $status == 200 ? 'success' : 'danger' }}">
-                <b>{{ $status ?? '500' }}</b>
-                <h3><b>{{ $message }}</b></h3>
+        @if(isset($status) && isset($message))
+        <div class="row mb-4">
+            <div class="col">
+                <div class="alert alert-{{ $status == 200 ? 'success' : 'danger' }}">
+                    <i class="bi {{ $status == 200 ? 'bi-check-circle-fill' : 'bi-exclamation-triangle-fill' }} fs-4"></i>
+                    <div>
+                        <strong>Status:</strong> {{ $status }}<br>
+                        <strong>Mensagem:</strong> {{ $message }}
+                    </div>
+                </div>
             </div>
         </div>
+        @endif
 
-        <div class="row g-3">
+        <div class="row g-4">
             @foreach ($data as $item)
-                <div class="col-6">
-                    <div class="card">
-                        <div class="card-header">
-                            Id: {{ $item['id'] }}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-light">
+                            <strong>ID:</strong> {{ $item['id'] }}
                         </div>
-
                         <div class="card-body">
-                            <div class="col-12">
-                                <img class="img-fluid" src="{{ $item['url'] }}" width="{{ $item['width'] }}"
-                                    height="{{ $item['height'] }}" alt="{{ $item['id'] }} não encontrado">
+                            <div class="img-container mb-3">
+                                <img src="{{ $item['url'] }}" class="img-fluid rounded" alt="{{ $item['id'] }}">
                             </div>
 
                             @if (!empty($item['breeds']))
                                 @foreach ($item['breeds'] as $breed)
-                                    <div class="col-12 mt-3">
-                                        <b>Id:</b> {{ $breed['id'] ?? 'n/d' }} <br>
-                                        <b>Nome:</b> {{ $breed['name'] ?? 'n/d' }} <br>
-                                        <b>Temperamento:</b> {{ $breed['temperament'] ?? 'n/d' }} <br>
-                                        <b>Origem:</b> {{ $breed['origin'] ?? 'n/d' }} <br>
-                                        <b>Tempo de vida:</b> {{ $breed['life_span'] ?? 'n/d' }} <br>
-                                        <b>Peso:</b>
-                                        Imperial: {{ $breed['weight']['imperial'] ?? 'n/d' }},
-                                        Métrico: {{ $breed['weight']['metric'] ?? 'n/d' }} <br>
-                                        <b>Wikipedia:</b>
-                                        <a href="{{ $breed['wikipedia_url'] ?? '#' }}" target="_blank">Visualizar</a>
-                                        <br>
+                                    <div class="mb-3">
+                                        <p><strong>Nome:</strong> {{ $breed['name'] ?? 'n/d' }}</p>
+                                        <p><strong>Temperamento:</strong> {{ $breed['temperament'] ?? 'n/d' }}</p>
+                                        <p><strong>Origem:</strong> {{ $breed['origin'] ?? 'n/d' }}</p>
+                                        <p><strong>Tempo de vida:</strong> {{ $breed['life_span'] ?? 'n/d' }} anos</p>
+                                        <p><strong>Peso:</strong> {{ $breed['weight']['imperial'] ?? 'n/d' }} lb (Imperial), {{ $breed['weight']['metric'] ?? 'n/d' }} kg (Métrico)</p>
+                                        <p><strong>Wikipedia:</strong> 
+                                            <a href="{{ $breed['wikipedia_url'] ?? '#' }}" class="link-primary" target="_blank">Visualizar</a>
+                                        </p>
                                     </div>
                                 @endforeach
+                            @else
+                                <p class="text-muted">Nenhuma informação de raça disponível.</p>
                             @endif
                         </div>
                     </div>
@@ -79,7 +117,6 @@
     </div>
 
     <script src="{{ asset('assets/bootstrap-5.0.2/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('assets/swalert/execute_alert.js') }}"></script>
 </body>
 
 </html>
