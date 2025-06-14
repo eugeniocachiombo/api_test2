@@ -19,13 +19,6 @@
                         aria-label="Campo de pesquisa">
                     <button class="btn btn-outline-primary" type="submit">Buscar</button>
                 </form>
-                <div class="mt-3">
-                    <a href="{{ route('get.favourit') }}">
-                        <button class="btn btn-outline-primary" type="submit">
-                            Listar Favoritos
-                        </button>
-                    </a>
-                </div>
             </div>
         </div>
 
@@ -41,15 +34,7 @@
                 <div class="col-6">
                     <div class="card" style="">
                         <div class="card-header">
-                            <div>
-                                Id: {{ $data[$i]['id'] }}
-                            </div>
-                            <div>
-                                <a href="{{ route('add.favourit', $data[$i]['id']) }}">
-                                    <button class="btn btn-outline-primary" type="button">Adicionar Ao
-                                        Faovrito</button>
-                                </a>
-                            </div>
+                            Id: {{ $data[$i]['id'] }}
                         </div>
 
                         <div class="card-body">
@@ -70,12 +55,12 @@
                                         <b>Temperamento: {{ $breeds[$i]['temperament'] ?? 'n/d' }}</b> <br>
                                         <b>Origem: {{ $breeds[$i]['origin'] ?? 'n/d' }}</b> <br>
                                         <b>Tempo de vida: {{ $breeds[$i]['life_span'] ?? 'n/d' }}</b> <br>
-                                        <b>Peso: 
+                                        <b>Peso:
                                             @php
                                                 $weight = $breeds[$i]['weight'];
                                             @endphp
-                                            Imperial: {{ $weight["imperial"] ?? ''}}
-                                            Métrico: {{ $weight["metric"] ?? ''}}
+                                            Imperial: {{ $weight['imperial'] ?? '' }}
+                                            Métrico: {{ $weight['metric'] ?? '' }}
                                         </b> <br>
                                         <b>Wikipedia:</b> <a
                                             href="{{ $breeds[$i]['wikipedia_url'] ?? '#' }}">Visualizar</a> <br>
