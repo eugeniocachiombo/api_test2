@@ -10,7 +10,7 @@
 
 <body>
     <div class="container py-4">
-      
+
         <div class="row mb-4">
             <div class="col-md-6">
                 <form action="" class="input-group">
@@ -21,30 +21,23 @@
             </div>
         </div>
 
-        
-        <div class="row">
-            <div class="col-12">
-                <div class="table-responsive">
-                    <table class="table table-dark table-striped table-bordered align-middle mb-0">
-                        <thead class="table-light text-dark">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+        <div class="row g-3">
+            @for ($i = 0; $i < count($data); $i++)
+                <div class="col-6">
+                    <div class="card" style="">
+                        <div class="card-header">
+                            Id: {{ $data[$i]['id'] }}
+                        </div>
+                        <div class="card-body">
+                            <div class="col-12">
+                                <img class="img-fluid" src="{{ $data[$i]['url'] }}" width="{{ $data[$i]['width'] }}"
+                                    height="{{ $data[$i]['height'] }}" alt="{{ $data[$i]['id'] }} não encontrado">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            @endfor
         </div>
     </div>
 
