@@ -32,11 +32,11 @@ class ConsumeController extends Controller
                 $this->status = $http->status();
                 $this->data = $http->json();
             } else {
-                $this->message = json_encode($http->json());
+                $this->message = "Falha na requisição: " . json_encode($http->json());
                 $this->status = $http->status();
             }
         } catch (\Exception $th) {
-            $this->message = $th->getMessage();
+            $this->message = "Erro de conexão com a API: " . $th->getMessage();
         } finally {
             return view("welcome", [
                 "data" => $this->data,
