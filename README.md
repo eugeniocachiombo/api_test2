@@ -2,7 +2,7 @@
 
 ### Rodar Migrations
 
-Executar o comando <b>php artisan migrate</b> antes de abrir o projecto pela primeira vez..
+Executar o comando <b>"php artisan migrate"</b> antes de abrir o projecto pela primeira vez..
 
 <hr>
 
@@ -23,6 +23,6 @@ Colar na url
 
 #### Endpoints 
 
-Para listagem geral http://127.0.0.1:8000
-Para listagem com filtro por limite http://127.0.0.1:8000/pesquisa?limit=5
+Para listagem geral http://127.0.0.1:8000 <br>
+Para listagem com filtro por limite http://127.0.0.1:8000/pesquisa?limit=5 <br>
 Para listagem com filtro por raça http://127.0.0.1:8000/pesquisa?breed_ids=beng
