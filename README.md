@@ -17,7 +17,7 @@ Executar o comando <b>"php artisan serve"</b>.
 ### Testar no Navegdor
 
 Copiar o endereço gerado pelo servidor: <b>127.0.0.1:8000</b>
-Colar na url exemplo: http://127.0.0.1:8000
+Colar na url do navegador exemplo: http://127.0.0.1:8000
 
 <hr>
 
