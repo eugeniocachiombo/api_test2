@@ -18,3 +18,11 @@ Executar o comando <b>"php artisan serve"</b>.
 
 Copiar o endereço gerado pelo serivor: <b>127.0.0.1:8000</b>
 Colar na url 
+
+<hr>
+
+#### Endpoints 
+
+Para listagem geral http://127.0.0.1:8000
+Para listagem com filtro por limite http://127.0.0.1:8000/pesquisa?limit=5
+Para listagem com filtro por raça http://127.0.0.1:8000/pesquisa?breed_ids=beng
